@@ -1,7 +1,9 @@
 import express from "express";
+import cors from 'cors';
 
 const servidor = express();
 servidor.use(express.json());
+servidor.use(cors());
 
 servidor.get('/helloworld', (req, resp) => {
 
