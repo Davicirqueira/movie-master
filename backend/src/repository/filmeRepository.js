@@ -34,3 +34,23 @@ export async function consultarFilmes(nome){
     return infosConsulta;
 
 }
+
+
+export async function consultarFilmesId(id){
+
+    let comando = `
+       SELECT id_filme      id,
+	   nm_filme             nome,
+       vl_avaliacao         avaliacao, 
+       dt_lancamento        lancamento, 
+       bt_disponivel        disponivel
+       FROM tb_filme
+       WHERE id_filme = ?
+    `
+
+    let resp = await con.query(comando, [id]);
+    let infosConsultaId = resp[0];
+
+    return infosConsultaId;
+
+}
