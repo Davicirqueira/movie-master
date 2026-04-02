@@ -1,0 +1,22 @@
+
+export function validarNovoFilme(filmeObj){
+
+    if(!filmeObj.nome)
+        throw new Error('Informe o nome do filme.');
+
+    if(!filmeObj.sinopse)
+        throw new Error('Informe a sinopse do filme.');
+
+    if(!filmeObj.avaliacao)
+        throw new Error('Informe a avaliação do filme');
+
+    if(isNaN(filmeObj.avaliacao))
+        throw new Error('Avaliação inválida');
+
+    if(!filmeObj.lancamento)
+        throw new Error('Informe a data de lançamento.');
+
+    if(filmeObj.disponivel == undefined)
+        throw new Error('Informe se o filme está disponível.');    
+
+}
