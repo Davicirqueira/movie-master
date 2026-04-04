@@ -41,9 +41,11 @@ export async function consultarFilmesId(id){
     let comando = `
        SELECT id_filme      id,
 	   nm_filme             nome,
+       ds_sinopse           sinopse,
        vl_avaliacao         avaliacao, 
        dt_lancamento        lancamento, 
-       bt_disponivel        disponivel
+       bt_disponivel        disponivel,
+       img_filme            img
        FROM tb_filme
        WHERE id_filme = ?
     `
@@ -52,5 +54,25 @@ export async function consultarFilmesId(id){
     let infosConsultaId = resp[0];
 
     return infosConsultaId;
+
+}
+
+
+export async function consultarFilmesNome(nome){
+
+    let comando = `
+       SELECT id_filme      id,
+	   nm_filme             nome,
+       vl_avaliacao         avaliacao, 
+       dt_lancamento        lancamento, 
+       bt_disponivel        disponivel
+       FROM tb_filme
+       WHERE nm_filme = ?
+    `
+
+    let resp = await con.query(comando, [nome]);
+    let infosConsulta = resp[0];
+
+    return infosConsulta;
 
 }

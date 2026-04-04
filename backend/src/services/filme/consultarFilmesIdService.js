@@ -1,12 +1,11 @@
 import { consultarFilmesId } from "../../repository/filmeRepository.js";
+import { validarFilmeUnico } from "../../validation/filme/filmeValidation.js";
 
 export default async function consultarFilmesIdService(id){
 
     let infosConsultaId = await consultarFilmesId(id);
 
-    if(infosConsultaId == 0){
-        throw new Error('Nenhum filme encontrado.')
-    }
+    validarFilmeUnico(infosConsultaId);
 
     let infosConsulta = infosConsultaId[0];
 

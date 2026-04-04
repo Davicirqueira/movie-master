@@ -20,3 +20,19 @@ export function validarNovoFilme(filmeObj){
         throw new Error('Informe se o filme está disponível.');    
 
 }
+
+
+export function validarFilmeUnico(infosConsulta){
+
+    if(infosConsulta.length == 0)
+        throw new Error('Filme não encontrado.');
+
+}
+
+
+export function validarFilmeIgual(infosConsulta){
+
+    if(infosConsulta.length > 0)
+        throw new Error('Já existe filme com esse nome.')
+
+}
