@@ -122,3 +122,24 @@ export async function excluirFilme(id) {
     return linhasAfetadas;
 
 }
+
+
+export async function uploadImg(id, caminho){
+
+    let comando = `
+        
+        UPDATE tb_filme
+        SET img_filme = ? 
+        WHERE id_filme = ?              
+    
+    `
+ 
+    let resp = await con.query(comando, [caminho, id]);
+
+    let info = resp[0];
+
+    let linhasAfetadas = info.affectedRows;
+
+    return linhasAfetadas;
+
+}

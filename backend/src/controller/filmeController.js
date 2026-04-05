@@ -1,11 +1,14 @@
 import { Router } from "express";
 const endpoitns = Router();
 
+import multer from 'multer';
+
 import salvarFilmeService from "../services/filme/salvarFilmeService.js";
 import consultarFilmesService from "../services/filme/consultarFilmesService.js";
 import consultarFilmesIdService from "../services/filme/consultarFilmesIdService.js";
 import editarFilmeService from "../services/filme/editarFilmeService.js";
 import excluirFilmeService from "../services/filme/excluirFilmeService.js";
+import uploadImgService from "../services/filme/uploadImgService.js";
 
 
 endpoitns.post('/filme', async (req, resp) => {
@@ -93,5 +96,23 @@ endpoitns.delete('/excluirFilme/:id', async (req, resp) => {
 
 });
 
+
+let uploadImg = multer({ dest: './storage/capa'});
+endpoitns.put('/uploadImg/:id/imagem', uploadImg.single('imagem'), async (req, resp) => {
+
+    try {
+        let id = req.params.id;
+        let pathWay = req.file.path;
+
+        //lógica de negócio
+        await uploadImgService(id, pathWay);
+
+        resp.status(204).send();
+        
+    }catch(err){
+        logErro(err);
+        resp.status(400).send(criarErro(err)); 
+    }
+});
 
 export default endpoitns;
