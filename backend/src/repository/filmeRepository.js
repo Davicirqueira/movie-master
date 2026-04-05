@@ -58,25 +58,6 @@ export async function consultarFilmesId(id){
 }
 
 
-//buscando filmes com mesmo nome para validação (salvarFilmeService.js)
-export async function consultarFilmesNome(nome){
-
-    let comando = `
-       SELECT id_filme      id,
-	   nm_filme             nome,
-       vl_avaliacao         avaliacao, 
-       dt_lancamento        lancamento, 
-       bt_disponivel        disponivel
-       FROM tb_filme
-       WHERE nm_filme = ?
-    `
-
-    let resp = await con.query(comando, [nome]);
-    let infosConsulta = resp[0];
-
-    return infosConsulta;
-
-}
 
 
 export async function editarFilme(filme, id) {
@@ -124,6 +105,10 @@ export async function excluirFilme(id) {
 }
 
 
+export async function consultarFilmesSinopse(sinopse){}
+
+
+
 export async function uploadImg(id, caminho){
 
     let comando = `
@@ -141,5 +126,26 @@ export async function uploadImg(id, caminho){
     let linhasAfetadas = info.affectedRows;
 
     return linhasAfetadas;
+
+}
+
+
+//buscando filmes com mesmo nome para validação (salvarFilmeService.js)
+export async function consultarFilmesNome(nome){
+
+    let comando = `
+       SELECT id_filme      id,
+	   nm_filme             nome,
+       vl_avaliacao         avaliacao, 
+       dt_lancamento        lancamento, 
+       bt_disponivel        disponivel
+       FROM tb_filme
+       WHERE nm_filme = ?
+    `
+
+    let resp = await con.query(comando, [nome]);
+    let infosConsulta = resp[0];
+
+    return infosConsulta;
 
 }

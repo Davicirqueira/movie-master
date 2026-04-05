@@ -22,7 +22,8 @@ endpoitns.post('/filme', async (req, resp) => {
             id: id
         });
         
-    } catch (err) {
+    } 
+    catch (err) {
         logErro(err);
         resp.status(400).send(criarErro(err));
     }
