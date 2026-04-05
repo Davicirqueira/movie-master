@@ -1,5 +1,5 @@
 
-export function validarNovoFilme(filmeObj){
+export function validarCamposObrigatorios(filmeObj){
 
     if(!filmeObj.nome)
         throw new Error('Informe o nome do filme.');
@@ -34,5 +34,21 @@ export function validarFilmeIgual(infosConsulta){
 
     if(infosConsulta.length > 0)
         throw new Error('Já existe filme com esse nome.')
+
+}
+
+
+export function validarEdicao(linhasAfetadas){
+
+    if(linhasAfetadas == 0)
+        throw new Error('Nenhum filme alterado.');
+
+}
+
+
+export function validarExclusao(linhasAfetadas){
+
+    if(linhasAfetadas == 0)
+        throw new Error('Nenhum filme excluído.');
 
 }

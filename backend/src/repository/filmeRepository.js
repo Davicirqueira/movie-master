@@ -58,6 +58,7 @@ export async function consultarFilmesId(id){
 }
 
 
+//buscando filmes com mesmo nome para validação (salvarFilmeService.js)
 export async function consultarFilmesNome(nome){
 
     let comando = `
@@ -74,5 +75,50 @@ export async function consultarFilmesNome(nome){
     let infosConsulta = resp[0];
 
     return infosConsulta;
+
+}
+
+
+export async function editarFilme(filme, id) {
+
+    const comando = `
+    
+        UPDATE tb_filme
+        SET nm_filme = ?,
+        ds_sinopse = ?, 
+        vl_avaliacao = ?, 
+        dt_lancamento = ?, 
+        bt_disponivel = ?
+        WHERE id_filme = ?;
+
+    `;
+
+    let resp = await con.query(comando, [filme.nome, filme.sinopse, filme.avaliacao, filme.lancamento, 
+    filme.disponivel, id]);
+
+    let info = resp[0];
+
+    let linhasAfetadas = info.affectedRows;
+
+    return linhasAfetadas;
+
+}
+
+
+export async function excluirFilme(id) {
+
+    const comando = `
+    
+        DELETE FROM tb_filme WHERE id_filme = ?;
+
+    `;
+
+    let resp = await con.query(comando, [id]);
+
+    let info = resp[0];
+
+    let linhasAfetadas = info.affectedRows;
+
+    return linhasAfetadas;
 
 }

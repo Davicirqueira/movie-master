@@ -4,6 +4,8 @@ const endpoitns = Router();
 import salvarFilmeService from "../services/filme/salvarFilmeService.js";
 import consultarFilmesService from "../services/filme/consultarFilmesService.js";
 import consultarFilmesIdService from "../services/filme/consultarFilmesIdService.js";
+import editarFilmeService from "../services/filme/editarFilmeService.js";
+import excluirFilmeService from "../services/filme/excluirFilmeService.js";
 
 
 endpoitns.post('/filme', async (req, resp) => {
@@ -55,5 +57,41 @@ endpoitns.get('/buscarFilmesId/:id', async (req, resp) => {
     }
 
 });
+
+
+endpoitns.put('/editarFilme/:id', async (req, resp) => {
+
+    try {
+        let id = req.params.id;
+        let filmeObj = req.body;
+
+        await editarFilmeService(filmeObj, id);
+
+        //204, no content.
+        resp.status(204).send();
+    }
+    catch(err){
+        logErro(err);
+        resp.status(400).send(criarErro(err)); 
+    }
+
+});
+
+
+endpoitns.delete('/excluirFilme/:id', async (req, resp) => {
+
+    try {
+        let id = req.params.id;
+        await excluirFilmeService(id);
+        resp.status(204).send();
+
+    }
+    catch(err){
+        logErro(err);
+        resp.status(400).send(criarErro(err));     
+    }
+
+});
+
 
 export default endpoitns;

@@ -1,10 +1,10 @@
 import { salvarFilme, consultarFilmesNome } from "../../repository/filmeRepository.js";
-import { validarNovoFilme, validarFilmeIgual } from "../../validation/filme/filmeValidation.js";
+import { validarCamposObrigatorios, validarFilmeIgual } from "../../validation/filme/filmeValidation.js";
 
 export default async function salvarFilmeService(filmeObj){
     
     //campos obrigatórios
-    validarNovoFilme(filmeObj);
+    validarCamposObrigatorios(filmeObj);
 
     //busca o filmes com o mesmo nome
     let infosConsulta = await consultarFilmesNome(filmeObj.nome);
