@@ -105,7 +105,9 @@ export async function excluirFilme(id) {
 }
 
 
-export async function consultarFilmesSinopse(sinopse){}
+export async function consultarFilmesSinopse(sinopse){
+    
+}
 
 
 
