@@ -7,10 +7,10 @@ export function validarCamposObrigatorios(filmeObj){
     if(!filmeObj.sinopse)
         throw new Error('Informe a sinopse do filme.');
 
-    if(!filmeObj.avaliacao)
+    if(filmeObj.avaliacao === undefined || filmeObj.avaliacao === null || filmeObj.avaliacao === '')
         throw new Error('Informe a avaliação do filme');
 
-    if(isNaN(filmeObj.avaliacao))
+    if(isNaN(Number(filmeObj.avaliacao)))
         throw new Error('Avaliação inválida');
 
     if(!filmeObj.lancamento)
